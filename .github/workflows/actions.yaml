@@ -1,25 +1,24 @@
-name: Echo Messages on Push to Main
+name: Clase 2 - Bootcam
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Hola munso
+        run: echo "Hola mundo"
 
-      - name: Echo Step 1
-        run: echo "🎉 New commit detected on the main branch!"
+second-job:
+  # consicional con contexto. Solo se puede utilizar un condicional por job
+  if: ${{githib.ref == 'ref/head/main' }}
+  # se utiliza para indicar que este job, necesita que se ejecute primero el job 1
+  needs: first-job
+  runs-on: ubuntu-latest
 
-      - name: Echo Step 2
-        run: echo "🔄 Starting the workflow..."
-
-      - name: Echo Step 3
-        run: echo "🚀 Performing some checks..."
-
-      - name: Echo Step 4
-        run: echo "✅ Workflow completed successfully!"
+  steps:
+    - name: Hola munso
+      run: echo "Hola mundo"
