@@ -8,16 +8,22 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Hola munso
-        run: echo "Hola mundo"
+    # variables de entorno
+    ENV:
+      NAME: codigofacilito
 
-second-job:
-  # consicional con contexto. Solo se puede utilizar un condicional por job
-  if: ${{githib.ref == 'ref/head/main' }}
-  # se utiliza para indicar que este job, necesita que se ejecute primero el job 1
-  needs: first-job
-  runs-on: ubuntu-latest
+    steps:
+      - name: Hola mundo
+        # se utiliza la variable de entorno
+        run: echo "Hola $NAME"
+
+  second-job:
+    # consicional con contexto. Solo se puede utilizar un condicional por job
+    # se puede definir a nivel job o a nivel step
+    if: ${{githib.ref == 'ref/head/main' }}
+    # se utiliza para indicar que este job, necesita que se ejecute primero el job 1
+    needs: first-job
+    runs-on: ubuntu-latest
 
   steps:
     - name: Hola munso
