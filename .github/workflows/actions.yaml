@@ -22,6 +22,7 @@ jobs:
 
       - name: Action
         # nos posiciona en la ruta de nuestro proyecto actual
+        # las acciones pueden recibir parámetros
         uses: actions/checkout@v4
 
       - name: directorio del proyecto
