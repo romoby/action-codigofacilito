@@ -6,16 +6,26 @@ on:
 
 jobs:
   first-job:
+    # se indica el nombre del primer ciclo
+    name: Ejemplo1
     runs-on: ubuntu-latest
 
     # variables de entorno
-    ENV:
+    env:
       NAME: codigofacilito
 
     steps:
-      - name: Hola mundo
+      - name: directorio del proyecto
         # se utiliza la variable de entorno
-        run: echo "Hola $NAME"
+        # run: echo "Hola $NAME"
+        run: ls -al
+
+      - name: Action
+        # nos posiciona en la ruta de nuestro proyecto actual
+        uses: actions/checkout@v4
+
+      - name: directorio del proyecto
+        run: ls -al
 
   second-job:
     # consicional con contexto. Solo se puede utilizar un condicional por job
